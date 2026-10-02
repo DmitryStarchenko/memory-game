@@ -16,22 +16,16 @@ const shuffle = (array) => {
   return shuffledArray;
 };
 
-const cards = () => {
-  const cardsElem = createElement("div", "cards");
-  let moves = 0;
-  let matchedPairs = 0;
+const cards = (onMove, onWin) => {
+  const cardsElement = createElement("div", "cards");
   let openedCards = [];
-
-  const updateMoves = () => {
-    moves += 1;
-    document.querySelector(".moves").textContent = `Moves: ${moves}`;
-  };
-
+  let matchedPairs = 0;
   const cardValues = [...numberCards, ...numberCards];
   const shuffledCards = shuffle(cardValues);
 
   shuffledCards.forEach((value, index) => {
     const cardElement = card(`card-${index + 1}`, value.toString());
+
     cardElement.addEventListener("click", () => {
       if (
         cardElement.classList.contains("card--opened") ||
@@ -44,31 +38,30 @@ const cards = () => {
       }
       cardElement.classList.add("card--opened");
       openedCards.push(cardElement);
-      if (openedCards.length === 2) {
-        updateMoves();
-        const [firstCard, secondCard] = openedCards;
-        if (firstCard.dataset.value === secondCard.dataset.value) {
-          console.log("Pair!");
-          firstCard.classList.add("card--matched");
-          secondCard.classList.add("card--matched");
-          matchedPairs += 1;
-          openedCards = [];
-          if (matchedPairs === numberCards.length) {
-            console.log("You won!");
-          }
-        } else {
-          console.log("Not a pair!");
-          setTimeout(() => {
-            firstCard.classList.remove("card--opened");
-            secondCard.classList.remove("card--opened");
-            openedCards = [];
-          }, 1000);
-        }
+      if (openedCards.length !== 2) {
+        return;
       }
+      onMove();
+      const [firstCard, secondCard] = openedCards;
+      if (firstCard.dataset.value === secondCard.dataset.value) {
+        firstCard.classList.add("card--matched");
+        secondCard.classList.add("card--matched");
+        matchedPairs += 1;
+        openedCards = [];
+        if (matchedPairs === numberCards.length) {
+          onWin();
+        }
+        return;
+      }
+      setTimeout(() => {
+        firstCard.classList.remove("card--opened");
+        secondCard.classList.remove("card--opened");
+        openedCards = [];
+      }, 1000);
     });
-    cardsElem.append(cardElement);
+    cardsElement.append(cardElement);
   });
-  return cardsElem;
+  return cardsElement;
 };
 
 export default cards;
