@@ -6,6 +6,9 @@ const card = (id, value) => {
   cardElement.dataset.value = value;
   const cardText = createElement("p", "cardText", value);
   cardElement.append(cardText);
+  cardElement.addEventListener("click", () => {
+    cardElement.classList.toggle("card--opened");
+  });
   return cardElement;
 };
 

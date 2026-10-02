@@ -6,8 +6,18 @@
   height: 200px;
   border: 2px solid black;
   border-radius: 20px;
+  cursor: pointer;
 }
 
 .cardText {
   font-size: 60px;
+  opacity: 0;
+}
+
+.card--opened {
+  background-color: white;
+}
+
+.card--opened .cardText {
+  opacity: 1;
 }
