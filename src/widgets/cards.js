@@ -18,9 +18,17 @@ const shuffle = (array) => {
 
 const cards = () => {
   const cardsElem = createElement("div", "cards");
+  let moves = 0;
+  let matchedPairs = 0;
+  let openedCards = [];
+
+  const updateMoves = () => {
+    moves += 1;
+    document.querySelector(".moves").textContent = `Moves: ${moves}`;
+  };
+
   const cardValues = [...numberCards, ...numberCards];
   const shuffledCards = shuffle(cardValues);
-  let openedCards = [];
 
   shuffledCards.forEach((value, index) => {
     const cardElement = card(`card-${index + 1}`, value.toString());
@@ -37,12 +45,17 @@ const cards = () => {
       cardElement.classList.add("card--opened");
       openedCards.push(cardElement);
       if (openedCards.length === 2) {
+        updateMoves();
         const [firstCard, secondCard] = openedCards;
         if (firstCard.dataset.value === secondCard.dataset.value) {
           console.log("Pair!");
           firstCard.classList.add("card--matched");
           secondCard.classList.add("card--matched");
+          matchedPairs += 1;
           openedCards = [];
+          if (matchedPairs === numberCards.length) {
+            console.log("You won!");
+          }
         } else {
           console.log("Not a pair!");
           setTimeout(() => {
