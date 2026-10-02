@@ -21,3 +21,7 @@
 .card--opened .cardText {
   opacity: 1;
 }
+
+.card--matched {
+  cursor: default;
+}

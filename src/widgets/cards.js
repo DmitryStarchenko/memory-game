@@ -25,7 +25,10 @@ const cards = () => {
   shuffledCards.forEach((value, index) => {
     const cardElement = card(`card-${index + 1}`, value.toString());
     cardElement.addEventListener("click", () => {
-      if (cardElement.classList.contains("card--opened")) {
+      if (
+        cardElement.classList.contains("card--opened") ||
+        cardElement.classList.contains("card--matched")
+      ) {
         return;
       }
       if (openedCards.length >= 2) {
@@ -37,6 +40,8 @@ const cards = () => {
         const [firstCard, secondCard] = openedCards;
         if (firstCard.dataset.value === secondCard.dataset.value) {
           console.log("Pair!");
+          firstCard.classList.add("card--matched");
+          secondCard.classList.add("card--matched");
           openedCards = [];
         } else {
           console.log("Not a pair!");
