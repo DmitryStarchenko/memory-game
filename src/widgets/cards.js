@@ -23,41 +23,48 @@ const cards = (onMove, onWin) => {
   const cardValues = [...numberCards, ...numberCards];
   const shuffledCards = shuffle(cardValues);
 
+  const handleCardClick = (cardElement) => {
+    if (
+      cardElement.classList.contains("card--opened") ||
+      cardElement.classList.contains("card--matched")
+    ) {
+      return;
+    }
+    if (openedCards.length >= 2) {
+      return;
+    }
+    cardElement.classList.add("card--opened");
+    openedCards.push(cardElement);
+    if (openedCards.length !== 2) {
+      return;
+    }
+    onMove();
+
+    const [firstCard, secondCard] = openedCards;
+    if (firstCard.dataset.value === secondCard.dataset.value) {
+      firstCard.classList.add("card--matched");
+      secondCard.classList.add("card--matched");
+      matchedPairs += 1;
+      openedCards = [];
+      if (matchedPairs === numberCards.length) {
+        onWin();
+      }
+      return;
+    }
+
+    setTimeout(() => {
+      firstCard.classList.remove("card--opened");
+      secondCard.classList.remove("card--opened");
+
+      openedCards = [];
+    }, 1000);
+  };
+
   shuffledCards.forEach((value, index) => {
     const cardElement = card(`card-${index + 1}`, value.toString());
 
     cardElement.addEventListener("click", () => {
-      if (
-        cardElement.classList.contains("card--opened") ||
-        cardElement.classList.contains("card--matched")
-      ) {
-        return;
-      }
-      if (openedCards.length >= 2) {
-        return;
-      }
-      cardElement.classList.add("card--opened");
-      openedCards.push(cardElement);
-      if (openedCards.length !== 2) {
-        return;
-      }
-      onMove();
-      const [firstCard, secondCard] = openedCards;
-      if (firstCard.dataset.value === secondCard.dataset.value) {
-        firstCard.classList.add("card--matched");
-        secondCard.classList.add("card--matched");
-        matchedPairs += 1;
-        openedCards = [];
-        if (matchedPairs === numberCards.length) {
-          onWin();
-        }
-        return;
-      }
-      setTimeout(() => {
-        firstCard.classList.remove("card--opened");
-        secondCard.classList.remove("card--opened");
-        openedCards = [];
-      }, 1000);
+      handleCardClick(cardElement);
     });
     cardsElement.append(cardElement);
   });

@@ -22,7 +22,14 @@ const showWinScreen = () => {
   const restartButton = document.createElement("button");
   restartButton.textContent = "Play Again";
   restartButton.addEventListener("click", createGame);
-  winElement.append(titleElement, resultElement, restartButton);
+  const closeButton = document.createElement("button");
+  closeButton.textContent = "Закрыть";
+  closeButton.addEventListener("click", () => {
+    winElement.remove();
+  });
+
+  winElement.append(titleElement, resultElement, restartButton, closeButton);
+
   app.append(winElement);
 };
 
