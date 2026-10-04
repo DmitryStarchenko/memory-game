@@ -1,13 +1,15 @@
 import createElement from "../shared/createElement.js";
 import { openLeaderboard } from "./leaderboard.js";
 
-const createHeader = (app) => {
+const createHeader = (app, onNewGame) => {
   const headerElement = createElement("header", "header");
+  const newGameButton = createElement("button", "", "Новая игра");
+  newGameButton.addEventListener("click", onNewGame);
   const leaderboardButton = createElement("button", "", "Таблица лидеров");
   leaderboardButton.addEventListener("click", () => {
     openLeaderboard(app);
   });
-  headerElement.append(leaderboardButton);
+  headerElement.append(newGameButton, leaderboardButton);
   return headerElement;
 };
 

@@ -6,13 +6,24 @@ import createElement from "../shared/createElement.js";
 
 const createGame = (app) => {
   let gameFinished = false;
-  const headerElement = createHeader(app);
+  let startGame;
+  const headerElement = createHeader(app, () => {
+    startGame();
+  });
+
   const countersElement = createElement("div", "counters");
   const movesElement = createElement("p", "moves");
   const pairsElement = createElement("p", "pairs");
   const counters = createCounters(movesElement, pairsElement);
+  const showWinScreen = () => {
+    if (gameFinished) {
+      return;
+    }
+    gameFinished = true;
+    createWinScreen(app, counters.getMoves(), startGame);
+  };
 
-  const startGame = () => {
+  startGame = () => {
     gameFinished = false;
     counters.reset();
     const cardsElement = cards(
@@ -20,16 +31,8 @@ const createGame = (app) => {
       counters.updatePairs,
       showWinScreen,
     );
-    countersElement.append(movesElement, pairsElement);
+    countersElement.replaceChildren(movesElement, pairsElement);
     app.replaceChildren(headerElement, countersElement, cardsElement);
-  };
-
-  const showWinScreen = () => {
-    if (gameFinished) {
-      return;
-    }
-    gameFinished = true;
-    createWinScreen(app, counters.getMoves(), startGame);
   };
   startGame();
 };
