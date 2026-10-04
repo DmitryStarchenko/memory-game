@@ -2,7 +2,6 @@ import createElement from "../shared/createElement.js";
 
 const STORAGE_KEY = "memory-game-leaderboard";
 const MAX_RESULTS = 10;
-
 const getResults = () => {
   const savedResults = localStorage.getItem(STORAGE_KEY);
   if (!savedResults) {
@@ -62,14 +61,12 @@ const createLeaderboard = () => {
     );
     contentElement.append(emptyElement);
   } else {
-    const tableElement = document.createElement("table");
-    tableElement.className = "leaderboard__table";
-    const theadElement = document.createElement("thead");
-    const headerRowElement = document.createElement("tr");
+    const tableElement = createElement("table", "leaderboard__table");
+    const theadElement = createElement("thead");
+    const headerRowElement = createElement("tr");
     const placeHeaderElement = createElement("th", "", "Место");
     const movesHeaderElement = createElement("th", "", "Ходы");
     const dateHeaderElement = createElement("th", "", "Дата");
-
     headerRowElement.append(
       placeHeaderElement,
       movesHeaderElement,
@@ -77,9 +74,10 @@ const createLeaderboard = () => {
     );
 
     theadElement.append(headerRowElement);
-    const tbodyElement = document.createElement("tbody");
+    const tbodyElement = createElement("tbody");
+
     results.forEach((result, index) => {
-      const rowElement = document.createElement("tr");
+      const rowElement = createElement("tr");
       const placeElement = createElement("td", "", String(index + 1));
       const movesElement = createElement("td", "", String(result.moves));
       const dateElement = createElement("td", "", result.date);
