@@ -1,4 +1,5 @@
 import createElement from "../shared/createElement.js";
+import openCharacter from "./createCharacters.js";
 import { openLeaderboard } from "./leaderboard.js";
 import "./header.css";
 
@@ -14,7 +15,11 @@ const createHeader = (app, onNewGame) => {
   leaderboardButton.addEventListener("click", () => {
     openLeaderboard(app);
   });
-  headerElement.append(newGameButton, leaderboardButton);
+  const characterButton = createElement("button", "characterButton", "Герои");
+  characterButton.addEventListener("click", () => {
+    openCharacter(app);
+  });
+  headerElement.append(newGameButton, leaderboardButton, characterButton);
   return headerElement;
 };
 
