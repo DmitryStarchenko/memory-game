@@ -3,8 +3,8 @@ const createCounters = (movesElement, pairsElement) => {
   let pairs = 0;
 
   const updateCounters = () => {
-    movesElement.textContent = `Moves: ${moves}`;
-    pairsElement.textContent = `Pairs: ${pairs} / 8`;
+    movesElement.textContent = `Шагов: ${moves}`;
+    pairsElement.textContent = `Пар: ${pairs} / 8`;
   };
 
   const updateMoves = () => {

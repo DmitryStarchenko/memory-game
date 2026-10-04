@@ -1,4 +1,5 @@
 import createElement from "../shared/createElement.js";
+import "./leaderboard.css";
 
 const STORAGE_KEY = "memory-game-leaderboard";
 const MAX_RESULTS = 10;
@@ -44,6 +45,7 @@ const addResult = (moves) => {
 };
 
 const createLeaderboard = () => {
+  const backModalElement = createElement("div", "backLeaderboard");
   const modalElement = createElement("div", "leaderboard");
   const contentElement = createElement("div", "leaderboard__content");
   const titleElement = createElement(
@@ -90,11 +92,12 @@ const createLeaderboard = () => {
 
   const closeButton = createElement("button", "leaderboard__close", "Закрыть");
   closeButton.addEventListener("click", () => {
-    modalElement.remove();
+    backModalElement.remove();
   });
   contentElement.append(closeButton);
   modalElement.append(contentElement);
-  return modalElement;
+  backModalElement.append(modalElement);
+  return backModalElement;
 };
 
 const openLeaderboard = (app) => {

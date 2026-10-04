@@ -17,7 +17,7 @@ const cards = (onMove, onPair, onWin) => {
   );
 
   shuffledCards.forEach((value, index) => {
-    const cardElement = card(`card-${index + 1}`, value.toString());
+    const cardElement = card(`card-${index + 1}`, value);
     cardElement.addEventListener("click", () => {
       handleCardClick(cardElement);
     });

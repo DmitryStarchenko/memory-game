@@ -1,1 +1,10 @@
-export const numberCards = [1, 2, 3, 4, 5, 6, 7, 8];
+export const numberCards = [
+  "../../../assets/Anduin.png",
+  "../../../assets/Arthas.jpg",
+  "../../../assets/Illidan.png",
+  "../../../assets/Jaina.jpg",
+  "../../../assets/Lich.jpg",
+  "../../../assets/saurfang.png",
+  "../../../assets/sylvanas.png",
+  "../../../assets/Thrall.png",
+];

@@ -3,6 +3,7 @@ import createHeader from "../widgets/header.js";
 import createCounters from "../features/counters.js";
 import createWinScreen from "../widgets/winScreen.js";
 import createElement from "../shared/createElement.js";
+import "./game.css";
 
 const createGame = (app) => {
   let gameFinished = false;
