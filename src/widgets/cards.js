@@ -16,7 +16,7 @@ const shuffle = (array) => {
   return shuffledArray;
 };
 
-const cards = (onMove, onWin) => {
+const cards = (onMove, onPair, onWin) => {
   const cardsElement = createElement("div", "cards");
   let openedCards = [];
   let matchedPairs = 0;
@@ -45,6 +45,7 @@ const cards = (onMove, onWin) => {
       firstCard.classList.add("card--matched");
       secondCard.classList.add("card--matched");
       matchedPairs += 1;
+      onPair();
       openedCards = [];
       if (matchedPairs === numberCards.length) {
         onWin();

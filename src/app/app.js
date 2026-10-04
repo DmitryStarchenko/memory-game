@@ -3,13 +3,27 @@ import "./style.css";
 
 const app = document.querySelector("#app");
 let moves = 0;
+let pairs = 0;
+const countersElement = document.createElement("div");
+countersElement.className = "counters";
 const movesElement = document.createElement("p");
-
 movesElement.className = "moves";
+const pairsElement = document.createElement("p");
+pairsElement.className = "pairs";
+
+const updateCounters = () => {
+  movesElement.textContent = `Moves: ${moves}`;
+  pairsElement.textContent = `Pairs: ${pairs} / 8`;
+};
 
 const updateMoves = () => {
   moves += 1;
-  movesElement.textContent = `Moves: ${moves}`;
+  updateCounters();
+};
+
+const updatePairs = () => {
+  pairs += 1;
+  updateCounters();
 };
 
 const showWinScreen = () => {
@@ -35,9 +49,11 @@ const showWinScreen = () => {
 
 const createGame = () => {
   moves = 0;
-  movesElement.textContent = "Moves: 0";
-  const cardsElement = cards(updateMoves, showWinScreen);
-  app.replaceChildren(movesElement, cardsElement);
+  pairs = 0;
+  updateCounters();
+  const cardsElement = cards(updateMoves, updatePairs, showWinScreen);
+  countersElement.append(movesElement, pairsElement);
+  app.replaceChildren(countersElement, cardsElement);
 };
 
 createGame();

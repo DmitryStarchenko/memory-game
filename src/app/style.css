@@ -43,3 +43,12 @@ body {
   background: black;
   color: white;
 }
+
+.counters {
+  display: flex;
+  gap: 30px;
+}
+
+.counters p {
+  margin: 0;
+}
