@@ -47,10 +47,10 @@ const addResult = (moves) => {
 const createLeaderboard = () => {
   const backModalElement = createElement("div", "backLeaderboard");
   const modalElement = createElement("div", "leaderboard");
-  const contentElement = createElement("div", "leaderboard__content");
+  const contentElement = createElement("div", "leaderboardContent");
   const titleElement = createElement(
     "h2",
-    "leaderboard__title",
+    "leaderboardTitle",
     "Таблица лидеров",
   );
   const results = getResults();
@@ -58,12 +58,12 @@ const createLeaderboard = () => {
   if (results.length === 0) {
     const emptyElement = createElement(
       "p",
-      "leaderboard__empty",
+      "leaderboardEmpty",
       "Пока нет результатов",
     );
     contentElement.append(emptyElement);
   } else {
-    const tableElement = createElement("table", "leaderboard__table");
+    const tableElement = createElement("table", "leaderboardTable");
     const theadElement = createElement("thead");
     const headerRowElement = createElement("tr");
     const placeHeaderElement = createElement("th", "", "Место");
@@ -90,7 +90,7 @@ const createLeaderboard = () => {
     contentElement.append(tableElement);
   }
 
-  const closeButton = createElement("button", "leaderboard__close", "Закрыть");
+  const closeButton = createElement("button", "leaderboardClose", "Закрыть");
   closeButton.addEventListener("click", () => {
     backModalElement.remove();
   });

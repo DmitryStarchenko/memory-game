@@ -1,6 +1,7 @@
 import createElement from "../shared/createElement.js";
 import openCharacter from "./createCharacters.js";
 import { openLeaderboard } from "./leaderboard.js";
+import createThemeButtons from "../entities/themeButtons.js";
 import "./header.css";
 
 const createHeader = (app, onNewGame) => {
@@ -19,7 +20,13 @@ const createHeader = (app, onNewGame) => {
   characterButton.addEventListener("click", () => {
     openCharacter(app);
   });
-  headerElement.append(newGameButton, leaderboardButton, characterButton);
+  const themeButtons = createThemeButtons(app);
+  headerElement.append(
+    newGameButton,
+    leaderboardButton,
+    characterButton,
+    themeButtons,
+  );
   return headerElement;
 };
 

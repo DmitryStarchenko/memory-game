@@ -11,16 +11,16 @@ const createCharacters = (characters) => {
     const characterElement = createElement("article", "character");
     const imageElement = createElement(
       "div",
-      "character__image",
+      "characterImage",
       "",
       "",
       character.image,
     );
-    const contentElement = createElement("div", "character__content");
-    const nameElement = createElement("h2", "character__name", character.name);
+    const contentElement = createElement("div", "characterContent");
+    const nameElement = createElement("h2", "characterName", character.name);
     const descriptionElement = createElement(
       "p",
-      "character__description",
+      "characterDescription",
       character.description,
     );
     contentElement.append(nameElement, descriptionElement);
@@ -28,7 +28,7 @@ const createCharacters = (characters) => {
     charactersContent.append(characterElement);
   });
 
-  const closeButton = createElement("button", "characters__close", "Закрыть");
+  const closeButton = createElement("button", "charactersClose", "Закрыть");
   closeButton.addEventListener("click", () => {
     backCharactersElement.remove();
   });
