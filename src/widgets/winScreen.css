@@ -1,41 +1,8 @@
-.backWin {
-  position: absolute;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 100%;
-  height: 100vh;
-  background-color: #0000009d;
-}
-
-.win {
-  display: flex;
-  flex-direction: column;
-  padding: 40px 60px;
-  font-family: "Cinzel", "Georgia", serif;
-  font-size: 16px;
-  font-weight: bold;
-  color: #ffd100;
-  text-align: center;
-  text-transform: uppercase;
-  text-shadow:
-    2px 2px 2px #000,
-    0 0 5px #000;
-  background-color: #00000091;
-  border: 2px solid #5c4028;
-  border-image: linear-gradient(to bottom, #c69343, #7a521d) 1;
-  box-shadow:
-    inset 0 0 10px rgba(0, 0, 0, 0.8),
-    0 4px 6px rgba(0, 0, 0, 0.5);
-  transition: all 0.1s ease-in-out;
-}
-
 .restartButton {
   margin-bottom: 15px;
 }
 
-.restartButton,
-.closeButton {
+.restartButton {
   position: relative;
   display: inline-block;
   padding: 12px 28px;
@@ -58,8 +25,7 @@
   transition: all 0.1s ease-in-out;
 }
 
-.restartButton:hover,
-.closeButton:hover {
+.restartButton:hover {
   color: #fff7be;
   background: linear-gradient(to bottom, #3b3b3b, #1f1f1f);
   border-image: linear-gradient(to bottom, #ffd100, #b8860b) 1;
@@ -68,8 +34,7 @@
     0 0 10px rgba(255, 209, 0, 0.6);
 }
 
-.restartButton:active,
-.closeButton:active {
+.restartButton:active {
   background: linear-gradient(to bottom, #080808, #1f1f1f);
   transform: translateY(2px);
   box-shadow: inset 0 0 15px rgba(0, 0, 0, 0.9);

@@ -1,5 +1,5 @@
 import createElement from "../shared/createElement.js";
-import "./leaderboard.css";
+import modalWindow from "../shared/modalWindow.js";
 
 const STORAGE_KEY = "memory-game-leaderboard";
 const MAX_RESULTS = 10;
@@ -45,23 +45,16 @@ const addResult = (moves) => {
 };
 
 const createLeaderboard = () => {
-  const backModalElement = createElement("div", "backLeaderboard");
-  const modalElement = createElement("div", "leaderboard");
-  const contentElement = createElement("div", "leaderboardContent");
-  const titleElement = createElement(
-    "h2",
-    "leaderboardTitle",
-    "Таблица лидеров",
-  );
+  const title = "Таблица лидеров";
+  const { backModalElement, modalElement } = modalWindow(title);
   const results = getResults();
-  contentElement.append(titleElement);
   if (results.length === 0) {
     const emptyElement = createElement(
       "p",
       "leaderboardEmpty",
       "Пока нет результатов",
     );
-    contentElement.append(emptyElement);
+    modalElement.append(emptyElement);
   } else {
     const tableElement = createElement("table", "leaderboardTable");
     const theadElement = createElement("thead");
@@ -74,7 +67,6 @@ const createLeaderboard = () => {
       movesHeaderElement,
       dateHeaderElement,
     );
-
     theadElement.append(headerRowElement);
     const tbodyElement = createElement("tbody");
 
@@ -87,15 +79,9 @@ const createLeaderboard = () => {
       tbodyElement.append(rowElement);
     });
     tableElement.append(theadElement, tbodyElement);
-    contentElement.append(tableElement);
+    modalElement.append(tableElement);
   }
 
-  const closeButton = createElement("button", "leaderboardClose", "Закрыть");
-  closeButton.addEventListener("click", () => {
-    backModalElement.remove();
-  });
-  contentElement.append(closeButton);
-  modalElement.append(contentElement);
   backModalElement.append(modalElement);
   return backModalElement;
 };

@@ -1,22 +1,18 @@
 import createElement from "../shared/createElement.js";
 import { addResult } from "./leaderboard.js";
+import modalWindow from "../shared/modalWindow.js";
 import "./winScreen.css";
 
 const showWinScreen = (app, moves, createGame) => {
-  const backWinElement = createElement("div", "backWin");
-  const winElement = createElement("div", "win");
-  const titleElement = createElement("h2", "", "Победа");
+  const title = "Победа";
+  const { backModalElement, modalElement } = modalWindow(title);
   const resultElement = createElement("p", "", `Шагов: ${moves}`);
   const restartButton = createElement("button", "restartButton", "Новая Игра");
   restartButton.addEventListener("click", createGame);
-  const closeButton = createElement("button", "closeButton", "Закрыть");
-  closeButton.addEventListener("click", () => {
-    backWinElement.remove();
-  });
-  backWinElement.append(winElement);
-  winElement.append(titleElement, resultElement, restartButton, closeButton);
+
+  modalElement.append(resultElement, restartButton);
   addResult(moves);
-  app.append(backWinElement);
+  app.append(backModalElement);
 };
 
 export default showWinScreen;

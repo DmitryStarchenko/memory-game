@@ -21,12 +21,9 @@ const createHeader = (app, onNewGame) => {
     openCharacter(app);
   });
   const themeButtons = createThemeButtons(app);
-  headerElement.append(
-    newGameButton,
-    leaderboardButton,
-    characterButton,
-    themeButtons,
-  );
+  const mainButtons = createElement("div", "mainButtons");
+  mainButtons.append(newGameButton, leaderboardButton);
+  headerElement.append(themeButtons, mainButtons, characterButton);
   return headerElement;
 };
 

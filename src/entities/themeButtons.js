@@ -4,7 +4,7 @@ import "./themeButtons.css";
 
 const createThemeButtons = (app) => {
   const iconLightButton = "../../assets/icon-alliance.png";
-  const iconDarkButton = "../../assets/icon-orda.png";
+  const iconDarkButton = "../../assets/icon-horde.png";
   const buttonsElement = createElement("div", "themeButtons");
   const lightButton = createElement(
     "button",
@@ -15,7 +15,7 @@ const createThemeButtons = (app) => {
   );
   const darkButton = createElement(
     "button",
-    "themeButtonOrda",
+    "themeButtonHorde",
     "",
     "",
     iconDarkButton,
@@ -24,7 +24,7 @@ const createThemeButtons = (app) => {
     changeTheme(app, "alliance");
   });
   darkButton.addEventListener("click", () => {
-    changeTheme(app, "orda");
+    changeTheme(app, "horde");
   });
   buttonsElement.append(lightButton, darkButton);
   return buttonsElement;
