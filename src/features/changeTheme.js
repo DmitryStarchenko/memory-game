@@ -11,21 +11,17 @@ const changeTheme = (app, theme) => {
   if (!themes[theme]) {
     return;
   }
-  const playAudio = playMusic(theme);
-  playAudio();
-
+  playMusic(theme);
   app.style.backgroundImage = `url(${themes[theme]})`;
   localStorage.setItem(THEME_KEY, theme);
 };
 
 const loadTheme = (app) => {
   const savedTheme = localStorage.getItem(THEME_KEY);
-
   if (savedTheme && themes[savedTheme]) {
     changeTheme(app, savedTheme);
     return;
   }
-
   changeTheme(app, "alliance");
 };
 

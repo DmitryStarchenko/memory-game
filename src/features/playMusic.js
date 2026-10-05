@@ -14,11 +14,9 @@ const playMusic = (theme) => {
   currentMusic.loop = true;
   currentMusic.volume = 0.4;
 
-  function playAudio() {
-    currentMusic.play();
-  }
-
-  return playAudio;
+  currentMusic.play().catch(() => {
+    console.log("Музыка будет запущена после взаимодействия пользователя");
+  });
 };
 
 export default playMusic;

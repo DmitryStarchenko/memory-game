@@ -4,11 +4,24 @@
   justify-content: center;
   width: 120px;
   height: 180px;
-  border: 2px solid black;
   border-radius: 10px;
   cursor: pointer;
   background-position: center;
   background-size: contain;
+  transition:
+    transform 0.6s ease,
+    box-shadow 0.3s ease;
+
+  transform-style: preserve-3d;
+}
+
+.card:hover {
+  box-shadow:
+    0 0 10px #ffd700,
+    0 0 20px #ffd700,
+    0 0 35px rgba(255, 215, 0, 0.7);
+
+  border-color: #ffd700;
 }
 
 .cardText {
@@ -19,6 +32,12 @@
   background-position: center;
   border-radius: 10px;
   opacity: 0;
+  transform: rotateY(180deg);
+  backface-visibility: hidden;
+}
+
+.card--opened {
+  transform: rotateY(180deg);
 }
 
 .card--opened .cardText {
